@@ -15,6 +15,7 @@ function generatePassword() {
     }
     else {
       alert("Your password will be " + numberOfCharacters + " characters long.");
+      
     }
   
     hasLowercase = confirm("Do you want lowercase characters?");
@@ -49,6 +50,10 @@ function generatePassword() {
       alert("Your password will NOT have special characters.");
     }
   
+    if (hasLowercase === false && hasUppercase === false && hasNumbers === false && hasSpecial === false) {
+      return "Please select at least one character type.";
+    };
+  
     // group selected characters
     if (hasLowercase) {
       possibleCharacters = possibleCharacters.concat(lowercaseCharacters);
@@ -68,23 +73,20 @@ function generatePassword() {
     for (let i = 0; i < numberOfCharacters; i++) {
       let rng =[Math.floor(Math.random() * possibleCharacters.length)];
       // or finalPassword += possibleCharacters[rng];
-      finalPassword = finalPassword +possibleCharacters[rng];
+      finalPassword = finalPassword + possibleCharacters[rng];
     }
     return finalPassword;
   };
   
   // Get references to the #generate element
-  
   var generateBtn = document.querySelector("#generate");
   
   // Write password to the #password input
   function writePassword() {
     var password = generatePassword();
     var passwordText = document.querySelector("#password");
-  
     passwordText.value = password;
-  
   }
   
   // Add event listener to generate button
-  generateBtn.Btn.addEventListener("click",writepassword);
+  generateBtn.addEventListener("click", writePassword);
